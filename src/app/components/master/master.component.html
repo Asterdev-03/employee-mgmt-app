@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-12 text-center">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button
+        type="button"
+        (click)="changeTab('roles')"
+        class="btn"
+        [ngClass]="currentComponent == 'roles' ? 'btn-success' : 'btn-primary'"
+      >
+        Roles
+      </button>
+      <button
+        type="button"
+        (click)="changeTab('designation')"
+        class="btn"
+        [ngClass]="
+          currentComponent == 'designation' ? 'btn-success' : 'btn-primary'
+        "
+      >
+        Designation
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12" *ngIf="currentComponent == 'roles'">
+    <app-roles></app-roles>
+  </div>
+  <div class="col-12" *ngIf="currentComponent == 'designation'">
+    <app-designation></app-designation>
+  </div>
+</div>
