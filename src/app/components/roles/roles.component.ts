@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IRole } from '../../model/interface/role';
+import { IApiResponseModel, IRole } from '../../model/interface/role';
 import { NgFor } from '@angular/common';
 
 @Component({
@@ -23,9 +23,16 @@ export class RolesComponent implements OnInit {
 
   getAllRoles() {
     this.http
-      .get('https://freeapi.miniprojectideas.com/api/ClientStrive/GetAllRoles')
-      .subscribe((res: any) => {
-        this.roleList = res.data;
-      });
+      .get<IApiResponseModel>(
+        'https://freeapi.miniprojectideas.com/api/ClientStrive/GetAllRoles'
+      )
+      .subscribe(
+        (res: IApiResponseModel) => {
+          this.roleList = res.data;
+        },
+        (error) => {
+          alert('API error/ Network Down');
+        }
+      );
   }
 }
