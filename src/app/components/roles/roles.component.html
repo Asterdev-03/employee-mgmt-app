@@ -1,4 +1,9 @@
 <div class="row mt-4">
+  @if (isLoader) {
+  <div class="col-12 text-center">
+    <div class="spinner-border text-info"></div>
+  </div>
+  } @else {
   <div class="col-12">
     <table class="table table-bordered">
       <thead>
@@ -15,4 +20,5 @@
       </tbody>
     </table>
   </div>
+  }
 </div>

@@ -12,6 +12,7 @@ import { NgFor } from '@angular/common';
 })
 export class RolesComponent implements OnInit {
   roleList: IRole[] = [];
+  isLoader: boolean = true;
 
   http = inject(HttpClient);
   // constructor(private http: HttpClient) {
@@ -29,9 +30,10 @@ export class RolesComponent implements OnInit {
       .subscribe(
         (res: IApiResponseModel) => {
           this.roleList = res.data;
+          this.isLoader = false;
         },
         (error) => {
-          alert('API error/ Network Down');
+          // alert('API error/ Network Down');
         }
       );
   }

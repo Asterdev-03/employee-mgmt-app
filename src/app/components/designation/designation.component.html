@@ -1,5 +1,9 @@
-<div class="row">
-  @for (item of designationList; track $index) {
+<div class="row mt-4">
+  @if (isLoader) {
+  <div class="col-12 text-center">
+    <div class="spinner-border text-danger"></div>
+  </div>
+  } @else { @for (item of designationList; track $index) {
   <div class="col-3">
     <div class="card">
       <div class="card-body">
@@ -9,5 +13,5 @@
       </div>
     </div>
   </div>
-  }
+  } }
 </div>
