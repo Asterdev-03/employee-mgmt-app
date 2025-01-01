@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IApiResponseModel } from '../model/interface/role';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class MasterService {
 
   getDesignations(): Observable<IApiResponseModel> {
     return this.http.get<IApiResponseModel>(
-      'https://freeapi.miniprojectideas.com/api/ClientStrive/GetAllDesignation'
+      environment.API_URL + 'GetAllDesignation'
     );
   }
 }
