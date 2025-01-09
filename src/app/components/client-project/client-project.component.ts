@@ -14,6 +14,7 @@ import {
 import { Client } from '../../model/class/Client';
 import { DatePipe } from '@angular/common';
 import { AlertComponent } from '../../reusableComponents/alert/alert.component';
+import { Alert } from '../../model/class/Alert';
 
 @Component({
   selector: 'app-client-project',
@@ -40,6 +41,8 @@ export class ClientProjectComponent implements OnInit {
     contactPersonEmailId: new FormControl(''),
     clientId: new FormControl(''),
   });
+
+  alertObj: Alert = new Alert();
 
   clientService = inject(ClientService);
   clientList: Client[] = [];
@@ -80,9 +83,17 @@ export class ClientProjectComponent implements OnInit {
       .addUpdateClientProject(formValue)
       .subscribe((res: IApiResponseModel) => {
         if (res.result) {
-          alert('Project created success');
+          this.alertObj = {
+            message: res.message,
+            type: 'Success',
+            visible: true,
+          };
         } else {
-          alert('Error:' + res.message);
+          this.alertObj = {
+            message: res.message,
+            type: 'Error',
+            visible: true,
+          };
         }
       });
   }

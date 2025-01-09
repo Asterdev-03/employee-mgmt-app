@@ -1,7 +1,18 @@
+@if (alert.visible) {
 <div
   [className]="
-    alertType === 'Success' ? 'alert alert-success' : 'alert alert-danger'
+    alert.type === 'Success'
+      ? 'alert alert-success alert-dismissible'
+      : 'alert alert-danger alert-dismissible'
   "
+  role="alert"
 >
-  <strong>{{ alertType }}:</strong> {{ alertMessage }}
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="onAlertToggle()"
+  ></button>
+  <strong>{{ alert.type }}:</strong> {{ alert.message }}
 </div>
+}

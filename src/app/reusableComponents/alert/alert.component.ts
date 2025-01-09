@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Alert } from '../../model/class/Alert';
 
 @Component({
   selector: 'app-alert',
@@ -7,6 +8,9 @@ import { Component, Input } from '@angular/core';
   styleUrl: './alert.component.css',
 })
 export class AlertComponent {
-  @Input() alertType: string = '';
-  @Input() alertMessage: string = '';
+  @Input() alert: Alert = new Alert();
+
+  onAlertToggle() {
+    this.alert = new Alert();
+  }
 }

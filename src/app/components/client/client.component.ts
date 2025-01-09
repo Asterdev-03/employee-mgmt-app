@@ -7,6 +7,7 @@ import { AsyncPipe, DatePipe, JsonPipe, UpperCasePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { AlertComponent } from '../../reusableComponents/alert/alert.component';
 import { MyButtonComponent } from '../../reusableComponents/my-button/my-button.component';
+import { Alert } from '../../model/class/Alert';
 
 @Component({
   selector: 'app-client',
@@ -25,6 +26,8 @@ export class ClientComponent implements OnInit {
   clientList: Client[] = [];
   clientService = inject(ClientService);
 
+  alertObj: Alert = new Alert();
+
   currentDate: Date = new Date();
 
   userList$: Observable<any> = new Observable<any>();
@@ -41,16 +44,23 @@ export class ClientComponent implements OnInit {
   }
 
   onSaveClick(data: string) {
-    debugger;
     this.clientService
       .addUpdateClient(this.clientObj)
       .subscribe((res: IApiResponseModel) => {
         if (res.result) {
-          alert(data + ' Created Success');
+          this.alertObj = {
+            message: res.message,
+            type: 'Success',
+            visible: true,
+          };
           this.loadClient();
           this.clientObj = new Client();
         } else {
-          alert('Failure:' + res.message);
+          this.alertObj = {
+            message: res.message,
+            type: 'Error',
+            visible: true,
+          };
         }
       });
   }

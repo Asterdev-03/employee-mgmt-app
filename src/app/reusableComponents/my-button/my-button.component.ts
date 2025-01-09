@@ -14,7 +14,6 @@ export class MyButtonComponent {
   @Output() onBtnClick = new EventEmitter<any>();
 
   onClick() {
-    debugger;
     this.onBtnClick.emit('Client');
   }
 }
