@@ -3,10 +3,20 @@ import { Client } from '../../model/class/Client';
 import { FormsModule } from '@angular/forms';
 import { ClientService } from '../../services/client.service';
 import { IApiResponseModel } from '../../model/interface/role';
+import { AsyncPipe, DatePipe, JsonPipe, UpperCasePipe } from '@angular/common';
+import { Observable } from 'rxjs';
+import { AlertComponent } from '../../reusableComponents/alert/alert.component';
+import { MyButtonComponent } from '../../reusableComponents/my-button/my-button.component';
 
 @Component({
   selector: 'app-client',
-  imports: [FormsModule],
+  imports: [
+    FormsModule,
+    UpperCasePipe,
+    DatePipe,
+    AlertComponent,
+    MyButtonComponent,
+  ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.css',
 })
@@ -15,8 +25,13 @@ export class ClientComponent implements OnInit {
   clientList: Client[] = [];
   clientService = inject(ClientService);
 
+  currentDate: Date = new Date();
+
+  userList$: Observable<any> = new Observable<any>();
+
   ngOnInit(): void {
     this.loadClient();
+    this.userList$ = this.clientService.getAllUsers();
   }
 
   loadClient() {
@@ -25,13 +40,13 @@ export class ClientComponent implements OnInit {
     });
   }
 
-  onSaveClick() {
+  onSaveClick(data: string) {
     debugger;
     this.clientService
-      .addUpdate(this.clientObj)
+      .addUpdateClient(this.clientObj)
       .subscribe((res: IApiResponseModel) => {
         if (res.result) {
-          alert('Client Created Success');
+          alert(data + ' Created Success');
           this.loadClient();
           this.clientObj = new Client();
         } else {
