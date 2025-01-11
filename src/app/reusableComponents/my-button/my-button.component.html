@@ -1,3 +1,3 @@
-<button [className]="btnClass" [disabled]="isDisabled" (click)="onClick()">
-  {{ btnText }}
+<button [className]="btnClass()" [disabled]="isDisabled()" (click)="onClick()">
+  {{ btnText() }}
 </button>

@@ -11,8 +11,9 @@
               <th>Person Name</th>
               <th>Project Name</th>
               <th>Company Name</th>
+              <th>Designation</th>
               <th>Start Date</th>
-              <th>Action</th>
+              <!-- <th>Action</th> -->
             </tr>
           </thead>
           <tbody>
@@ -22,11 +23,12 @@
               <td>{{ project.clientName }}</td>
               <td>{{ project.projectName }}</td>
               <td>{{ project.empName }}</td>
+              <td>{{ project.empDesignation }}</td>
               <td>{{ project.startDate | date : "dd/MM/yyyy" }}</td>
-              <td>
+              <!-- <td>
                 <button class="btn btn-primary">Edit</button>
                 <button class="btn btn-danger">Delete</button>
-              </td>
+              </td> -->
             </tr>
             }
           </tbody>
@@ -144,7 +146,7 @@
               </select>
             </div>
           </div>
-          <div class="row pt-4">
+          <!-- <div class="row pt-4">
             <div class="col-6 text-center">
               <button class="btn btn-secondary">Reset</button>
             </div>
@@ -157,7 +159,7 @@
                 Save
               </button>
             </div>
-          </div>
+          </div> -->
         </form>
       </div>
     </div>

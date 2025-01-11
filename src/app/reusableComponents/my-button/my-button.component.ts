@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  input,
+  Input,
+  output,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-my-button',
@@ -7,11 +14,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './my-button.component.css',
 })
 export class MyButtonComponent {
-  @Input() btnText: string = '';
-  @Input() btnClass: string = '';
-  @Input() isDisabled: boolean = true;
+  btnText = input<string>('');
+  btnClass = input<string>('');
+  isDisabled = input<boolean>(true);
 
-  @Output() onBtnClick = new EventEmitter<any>();
+  onBtnClick = output<string>();
 
   onClick() {
     this.onBtnClick.emit('Client');
