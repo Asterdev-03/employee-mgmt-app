@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IApiResponseModel, IRole } from '../../model/interface/role';
 import { NgFor } from '@angular/common';
+import { MasterService } from '../../services/master.service';
 
 @Component({
   selector: 'app-roles',
@@ -18,23 +19,35 @@ export class RolesComponent implements OnInit {
   // constructor(private http: HttpClient) {
   // }
 
+  masterService = inject(MasterService);
+
   ngOnInit(): void {
     this.getAllRoles();
   }
 
   getAllRoles() {
-    this.http
-      .get<IApiResponseModel>(
-        'https://freeapi.miniprojectideas.com/api/ClientStrive/GetAllRoles'
-      )
-      .subscribe(
-        (res: IApiResponseModel) => {
-          this.roleList = res.data;
-          this.isLoader = false;
-        },
-        (error) => {
-          // alert('API error/ Network Down');
-        }
-      );
+    // this.http
+    //   .get<IApiResponseModel>(
+    //     'https://freeapi.miniprojectideas.com/api/ClientStrive/GetAllRoles'
+    //   )
+    //   .subscribe(
+    //     (res: IApiResponseModel) => {
+    //       this.roleList = res.data;
+    //       this.isLoader = false;
+    //     },
+    //     (error) => {
+    //       // alert('API error/ Network Down');
+    //     }
+    //   );
+
+    this.masterService.getRoles().subscribe(
+      (res: IApiResponseModel) => {
+        this.roleList = res.data;
+        this.isLoader = false;
+      },
+      (error) => {
+        // alert('API error/ Network Down');
+      }
+    );
   }
 }

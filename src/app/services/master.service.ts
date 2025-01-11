@@ -15,4 +15,10 @@ export class MasterService {
       environment.API_URL + 'GetAllDesignation'
     );
   }
+
+  getRoles(): Observable<IApiResponseModel> {
+    return this.http.get<IApiResponseModel>(
+      environment.API_URL + 'GetAllRoles'
+    );
+  }
 }
